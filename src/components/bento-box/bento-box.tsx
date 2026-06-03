@@ -28,7 +28,7 @@ const BENTO_VARIANTS: Variants = {
 // ─── Types ────────────────────────────────────────────────────────────────────
 
 type BentoElementSize = 1 | 2 | 3 | 4 | 5 | 6;
-export type BentoResponsive<T = BentoElementSize> =
+type BentoResponsive<T = BentoElementSize> =
     | T
     | { base?: T; sm?: T; md?: T; lg?: T };
 
@@ -158,5 +158,5 @@ function BentoElement({
 
 BentoBox.Element = BentoElement;
 
-export type {BentoBoxProps, BentoElementProps};
+export type {BentoBoxProps, BentoElementProps, BentoResponsive};
 export {BentoBox};
