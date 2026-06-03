@@ -5,6 +5,7 @@
    ============================================================================ */
 
 /* Safelist explicite */
+@source inline("grid-flow-dense");
 @source inline("{grid-cols,col-span,row-span}-{1,2,3,4,5,6}");
 @source inline("{sm,md,lg}:{grid-cols,col-span,row-span}-{1,2,3,4,5,6}");
 
