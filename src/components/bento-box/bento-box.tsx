@@ -1,5 +1,10 @@
 import {AnimatePresence, motion, type Variants} from "motion/react";
-import {type HTMLAttributes, isValidElement, type ReactElement} from "react";
+import {isValidElement} from "react";
+import type {
+    BentoBoxProps,
+    BentoElementProps,
+    BentoResponsive,
+} from "@/components/bento-box/bento-box.types.ts";
 import {cn} from "@/lib/utils";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
@@ -24,28 +29,6 @@ const BENTO_VARIANTS: Variants = {
         transition: {duration: 0.15, ease: "easeIn"},
     },
 };
-
-// ─── Types ────────────────────────────────────────────────────────────────────
-
-type BentoElementSize = 1 | 2 | 3 | 4 | 5 | 6;
-type BentoResponsive<T = BentoElementSize> =
-    | T
-    | { base?: T; sm?: T; md?: T; lg?: T };
-
-type AspectRatio = [number, number];
-
-interface BentoBoxProps extends HTMLAttributes<HTMLDivElement> {
-    cols?: BentoResponsive;
-    baseAspect?: AspectRatio;
-    dense?: boolean;
-}
-
-interface BentoElementProps {
-    children: ReactElement<{ className?: string }>;
-    layoutId: string; // same as key
-    colSpan?: BentoResponsive;
-    rowSpan?: BentoResponsive;
-}
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -158,5 +141,4 @@ function BentoElement({
 
 BentoBox.Element = BentoElement;
 
-export type {BentoBoxProps, BentoElementProps, BentoResponsive};
 export {BentoBox};

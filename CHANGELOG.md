@@ -6,10 +6,12 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versio
 ## [Unreleased]
 
 ### Added
+- Export `BentoResponsive` type for consumer use
 
 ### Changed
-- Rename internal `Size` type to `BentoElementSize`
-- Export `BentoResponsive<T>` type for consumer use
+- Extract all types to dedicated `types.ts` file
+- Rename internal `Size` to `BentoElementSize`
+- Remove `"use client"` directive — let consumer handle boundary
 
 ### Removed
 
