@@ -15,7 +15,6 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versio
 
 ### Fixed
 - Strip trailing dash from `bento-cols-*` class prefix for responsive variants
-- Add `"use client"` directive to `BentoBox` — required for Next.js App Router compatibility
 - Add `grid-flow-dense` to inline safelist in styles
 
 ### Security

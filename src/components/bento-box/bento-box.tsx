@@ -1,4 +1,3 @@
-"use client";
 import {AnimatePresence, motion, type Variants} from "motion/react";
 import {type HTMLAttributes, isValidElement, type ReactElement} from "react";
 import {cn} from "@/lib/utils";
