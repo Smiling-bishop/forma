@@ -77,7 +77,12 @@ function bentoColsSize(
         typeof size !== "number" &&
         Object.entries(size)
             .map(([bp, sizeEl]) =>
-                [cls.prefix, bp !== "base" ? bp : null, sizeEl, cls.suffix]
+                [
+                    cls.prefix?.replace(/-$/g, ""),
+                    bp !== "base" ? bp : null,
+                    sizeEl,
+                    cls.suffix,
+                ]
                     .filter(Boolean)
                     .join("-"),
             )
