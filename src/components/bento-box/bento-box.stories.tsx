@@ -150,7 +150,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
     args: {cols: 4, dense: false},
     render: (args) => (
-        <div className="@container">
+        <div className="@container mx-auto max-w-187.5">
             <BentoBox {...args}>
                 <BentoBox.Element layoutId="a" colSpan={2}>
                     <Tile label="2×1 — large" value="19 400 €"/>
@@ -205,7 +205,7 @@ export const Default: Story = {
 export const TwoColumns: Story = {
     args: {cols: 2},
     render: (args) => (
-        <div className="@container">
+        <div className="@container mx-auto max-w-187.5">
             <BentoBox {...args}>
                 <BentoBox.Element layoutId="a" colSpan={2}>
                     <Tile label="Pleine largeur — 2×1" value="Bannière"/>
@@ -234,7 +234,7 @@ export const TwoColumns: Story = {
 export const ThreeColumns: Story = {
     args: {cols: 3},
     render: (args) => (
-        <div className="@container">
+        <div className="@container mx-auto max-w-187.5">
             <BentoBox {...args}>
                 <BentoBox.Element layoutId="a" colSpan={3}>
                     <Tile label="Pleine largeur — 3×1" value="Header"/>
@@ -272,7 +272,7 @@ export const ThreeColumns: Story = {
  */
 export const ResponsiveCols: Story = {
     render: () => (
-        <div className="@container">
+        <div className="@container mx-auto max-w-187.5">
             <BentoBox cols={{base: 1, sm: 2, lg: 4}} dense>
                 {Array.from({length: 6}, (_, i) => (
                     <BentoBox.Element key={i} layoutId={`r${i}`}>
@@ -315,7 +315,7 @@ export const ResponsiveCols: Story = {
 export const WithoutDense: Story = {
     args: {cols: 4, dense: false},
     render: (args) => (
-        <div className="@container">
+        <div className="@container mx-auto max-w-187.5">
             <BentoBox {...args}>
                 <BentoBox.Element layoutId="a" colSpan={2}>
                     <Tile label="A — 2×1"/>
@@ -350,7 +350,7 @@ export const WithoutDense: Story = {
 export const WithDense: Story = {
     args: {cols: 4, dense: true},
     render: (args) => (
-        <div className="@container">
+        <div className="@container mx-auto max-w-187.5">
             <BentoBox {...args}>
                 <BentoBox.Element layoutId="a" colSpan={2}>
                     <Tile label="A — 2×1"/>
@@ -390,7 +390,7 @@ export const WithDense: Story = {
  */
 export const AspectLandscape: Story = {
     render: () => (
-        <div className="@container">
+        <div className="@container mx-auto max-w-187.5">
             <BentoBox cols={3} dense baseAspect={[4, 3]}>
                 <BentoBox.Element layoutId="a" colSpan={2}>
                     <Tile label="2×1 → 8:3"/>
@@ -422,7 +422,7 @@ export const AspectLandscape: Story = {
  */
 export const AspectPortrait: Story = {
     render: () => (
-        <div className="@container">
+        <div className="@container mx-auto max-w-187.5">
             <BentoBox cols={4} dense baseAspect={[3, 4]}>
                 <BentoBox.Element layoutId="a" colSpan={2}>
                     <Tile label="2×1 → 6:4"/>
@@ -461,7 +461,7 @@ export const AspectPortrait: Story = {
  */
 export const ColSpans: Story = {
     render: () => (
-        <div className="@container">
+        <div className="@container mx-auto max-w-187.5">
             <BentoBox cols={4}>
                 {([1, 2, 3, 4] as const).map((span) => (
                     <BentoBox.Element key={span} layoutId={`cs${span}`} colSpan={span}>
@@ -488,7 +488,7 @@ export const ColSpans: Story = {
  */
 export const RowSpans: Story = {
     render: () => (
-        <div className="@container">
+        <div className="@container mx-auto max-w-187.5">
             <BentoBox cols={4} dense>
                 <BentoBox.Element layoutId="r2" rowSpan={2}>
                     <Tile label="rowSpan=2" value="↕"/>
@@ -497,7 +497,7 @@ export const RowSpans: Story = {
                     <Tile label="rowSpan=3" value="↕↕"/>
                 </BentoBox.Element>
                 {Array.from({length: 6}, (_, i) => (
-                    <BentoBox.Element key={i} layoutId={`f${i}`}>
+                    <BentoBox.Element key={i.toString()} layoutId={`f${i}`}>
                         <Tile label="1×1"/>
                     </BentoBox.Element>
                 ))}
