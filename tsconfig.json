@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+
+    // Module
+    "module": "ESNext",
+    "moduleResolution": "Bundler",  // requis pour Vite + imports sans extension
+
+    // React
+    "jsx": "react-jsx",             // pas besoin d'importer React dans chaque fichier
+
+    // Lib — pas de build TS, Vite s'en charge
+    "noEmit": true,
+    "allowImportingTsExtensions": true,  // importer .tsx sans erreur
+
+    // CSS imports (.d.ts + allowArbitraryExtensions)
+    "allowArbitraryExtensions": true,
+
+    // Rigueur
+    "strict": true,
+    "skipLibCheck": true,           // ignore les erreurs dans node_modules
+
+    // Path alias (optionnel mais recommandé)
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": [
+    "src",           // composants, styles, index.ts
+    ".storybook"     // preview.ts, main.ts
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}
