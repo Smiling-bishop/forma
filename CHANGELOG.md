@@ -8,6 +8,8 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versio
 ### Added
 
 ### Changed
+- Rename internal `Size` type to `BentoElementSize`
+- Export `BentoResponsive<T>` type for consumer use
 
 ### Removed
 

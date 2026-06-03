@@ -27,13 +27,15 @@ const BENTO_VARIANTS: Variants = {
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
-type Size = 1 | 2 | 3 | 4 | 5 | 6;
-type Responsive<T = Size> = T | { base?: T; sm?: T; md?: T; lg?: T };
+type BentoElementSize = 1 | 2 | 3 | 4 | 5 | 6;
+export type BentoResponsive<T = BentoElementSize> =
+    | T
+    | { base?: T; sm?: T; md?: T; lg?: T };
 
 type AspectRatio = [number, number];
 
 interface BentoBoxProps extends HTMLAttributes<HTMLDivElement> {
-    cols?: Responsive;
+    cols?: BentoResponsive;
     baseAspect?: AspectRatio;
     dense?: boolean;
 }
@@ -41,15 +43,15 @@ interface BentoBoxProps extends HTMLAttributes<HTMLDivElement> {
 interface BentoElementProps {
     children: ReactElement<{ className?: string }>;
     layoutId: string; // same as key
-    colSpan?: Responsive;
-    rowSpan?: Responsive;
+    colSpan?: BentoResponsive;
+    rowSpan?: BentoResponsive;
 }
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
 function classNamesFromSize(
     cls: { prefix?: string; suffix?: string },
-    size: Responsive,
+    size: BentoResponsive,
     prefixBp: string = "",
 ) {
     return cn(
@@ -70,7 +72,7 @@ function classNamesFromSize(
 
 function bentoColsSize(
     cls: { prefix?: string; suffix?: string },
-    size: Responsive,
+    size: BentoResponsive,
 ) {
     return cn(
         typeof size === "number" && [cls.prefix, size, cls.suffix].join(""),
