@@ -34,20 +34,52 @@ Best for monorepo or side-by-side projects on the same machine.
 pnpm install
 ```
 
-**2. Configure Next.js to transpile the source**
+**2. Configure your bundler**
+
+<details>
+<summary><strong>Next.js</strong></summary>
 
 ```ts
 // your-app/next.config.ts
 const nextConfig = {
-    transpilePackages: ["forma"],
+  transpilePackages: ["forma"],
 }
 
 export default nextConfig
 ```
 
+</details>
+
+<details>
+<summary><strong>Vite / React</strong></summary>
+
+No extra config needed — Vite resolves `file:` dependencies natively.
+
+Make sure `@tailwindcss/vite` is installed in your app:
+
+```bash
+pnpm add -D @tailwindcss/vite
+```
+
+```ts
+// your-app/vite.config.ts
+import { defineConfig } from "vite"
+import react from "@vitejs/plugin-react"
+import tailwindcss from "@tailwindcss/vite"
+
+export default defineConfig({
+  plugins: [react(), tailwindcss()],
+})
+```
+
+</details>
+
 **3. Import the styles and configure Tailwind to scan forma's source**
 
 `forma/styles` maps to `src/styles/index.css` in this repo — it includes Tailwind and all utility classes (including `bento-cols-*`).
+
+<details>
+<summary><strong>Next.js</strong></summary>
 
 ```css
 /* your-app/app/globals.css */
@@ -55,8 +87,29 @@ export default nextConfig
 @import "forma/styles";
 
 /* Let Tailwind scan forma components to generate their classes */
-@source "../../forma/src";
+@source "../node_modules/forma/src";
 ```
+
+</details>
+
+<details>
+<summary><strong>Vite / React</strong></summary>
+
+```css
+/* your-app/src/index.css */
+@import "tailwindcss";
+@import "forma/styles";
+
+/* Let Tailwind scan forma components to generate their classes */
+@source "../node_modules/forma/src";
+```
+
+```tsx
+// your-app/src/main.tsx
+import "./index.css"
+```
+
+</details>
 
 **4. Import and use components**
 
@@ -64,18 +117,18 @@ export default nextConfig
 import { BentoBox } from "forma"
 
 export default function Gallery() {
-  return (
-    <div className="@container">
-      <BentoBox cols={{ base: 1, sm: 2, lg: 4 }} dense baseAspect={[4, 3]}>
-        <BentoBox.Element key="a" layoutId="a" colSpan={2}>
-          <MyCard />
-        </BentoBox.Element>
-        <BentoBox.Element key="b" layoutId="b" rowSpan={2}>
-          <MyCard />
-        </BentoBox.Element>
-      </BentoBox>
-    </div>
-  )
+    return (
+        <div className="@container">
+            <BentoBox cols={{ base: 1, sm: 2, lg: 4 }} dense baseAspect={[4, 3]}>
+                <BentoBox.Element key="a" layoutId="a" colSpan={2}>
+                    <MyCard />
+                </BentoBox.Element>
+                <BentoBox.Element key="b" layoutId="b" rowSpan={2}>
+                    <MyCard />
+                </BentoBox.Element>
+            </BentoBox>
+        </div>
+    )
 }
 ```
 
