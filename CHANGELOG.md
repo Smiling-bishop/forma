@@ -15,6 +15,7 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versio
 
 ### Fixed
 - strip trailing dash from `bento-cols-*` class prefix for responsive variants
+- add `grid-flow-dense` to inline safelist
 
 ### Security
 
