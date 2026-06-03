@@ -1,18 +1,30 @@
 // components/ui/bento-box/bento-box.stories.tsx
-import type { Meta, StoryObj } from "@storybook/react-vite";
-import { expect, within } from "storybook/test"
-import { BentoBox } from "./bento-box";
+import type {Meta, StoryObj} from "@storybook/react-vite";
+import {expect, within} from "storybook/test";
+import {BentoBox} from "./bento-box";
 
 // ─── Composants de démo ───────────────────────────────────────────────────────
 
-function Tile({ className, label, value }: { className?: string; label: string; value?: string }) {
+function Tile({
+                  className,
+                  label,
+                  value,
+              }: {
+    className?: string;
+    label: string;
+    value?: string;
+}) {
     return (
         <div
             data-testid="tile"
             className={`flex h-full flex-col rounded-xl border border-border bg-card p-4 ${className ?? ""}`}
         >
-            <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">{label}</p>
-            {value && <p className="mt-auto text-3xl font-medium text-foreground">{value}</p>}
+            <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                {label}
+            </p>
+            {value && (
+                <p className="mt-auto text-3xl font-medium text-foreground">{value}</p>
+            )}
         </div>
     );
 }
@@ -65,7 +77,7 @@ const meta = {
     },
     argTypes: {
         cols: {
-            control: { type: "select" },
+            control: {type: "select"},
             options: [1, 2, 3, 4, 5, 6],
             description: [
                 "Nombre de colonnes de la grille.",
@@ -77,8 +89,8 @@ const meta = {
                 "```",
             ].join("\n"),
             table: {
-                type: { summary: "Responsive<1 | 2 | 3 | 4 | 5 | 6>" },
-                defaultValue: { summary: "4" },
+                type: {summary: "Responsive<1 | 2 | 3 | 4 | 5 | 6>"},
+                defaultValue: {summary: "4"},
             },
         },
         baseAspect: {
@@ -101,8 +113,8 @@ const meta = {
                 "| 2×2     | [4,3]           | 8:6 = 4:3       |",
             ].join("\n"),
             table: {
-                type: { summary: "[number, number]" },
-                defaultValue: { summary: "[1, 1]" },
+                type: {summary: "[number, number]"},
+                defaultValue: {summary: "[1, 1]"},
             },
         },
         dense: {
@@ -113,8 +125,8 @@ const meta = {
                 "⚠️ Peut changer l'ordre visuel des éléments.",
             ].join("\n"),
             table: {
-                type: { summary: "boolean" },
-                defaultValue: { summary: "false" },
+                type: {summary: "boolean"},
+                defaultValue: {summary: "false"},
             },
         },
     },
@@ -136,40 +148,40 @@ type Story = StoryObj<typeof meta>;
  * - **1×2** — tall (deux lignes)
  */
 export const Default: Story = {
-    args: { cols: 4, dense: false },
+    args: {cols: 4, dense: false},
     render: (args) => (
         <div className="@container">
             <BentoBox {...args}>
                 <BentoBox.Element layoutId="a" colSpan={2}>
-                    <Tile label="2×1 — large" value="19 400 €" />
+                    <Tile label="2×1 — large" value="19 400 €"/>
                 </BentoBox.Element>
                 <BentoBox.Element layoutId="b" rowSpan={2}>
-                    <Tile label="1×2 — tall" value="74%" />
+                    <Tile label="1×2 — tall" value="74%"/>
                 </BentoBox.Element>
                 <BentoBox.Element layoutId="c">
-                    <Tile label="1×1" value="128" />
+                    <Tile label="1×1" value="128"/>
                 </BentoBox.Element>
                 <BentoBox.Element layoutId="d">
-                    <Tile label="1×1" value="4.8" />
+                    <Tile label="1×1" value="4.8"/>
                 </BentoBox.Element>
                 <BentoBox.Element layoutId="e">
-                    <Tile label="1×1" value="31" />
+                    <Tile label="1×1" value="31"/>
                 </BentoBox.Element>
                 <BentoBox.Element layoutId="f" colSpan={2}>
-                    <Tile label="2×1 — large" value="↗ +18%" />
+                    <Tile label="2×1 — large" value="↗ +18%"/>
                 </BentoBox.Element>
                 <BentoBox.Element layoutId="g">
-                    <Tile label="1×1" value="3" />
+                    <Tile label="1×1" value="3"/>
                 </BentoBox.Element>
             </BentoBox>
         </div>
     ),
-    play: async ({ canvasElement }) => {
+    play: async ({canvasElement}) => {
         const canvas = within(canvasElement);
         const grid = canvasElement.querySelector(".grid") as HTMLElement;
 
         // Grille présente
-        expect(grid).toBeInTheDocument()
+        expect(grid).toBeInTheDocument();
 
         // 4 colonnes par défaut
         expect(grid.classList).toContain("grid-cols-4");
@@ -191,26 +203,26 @@ export const Default: Story = {
  * Grille **2 colonnes** — layout serré, adapté aux sidebars ou écrans étroits.
  */
 export const TwoColumns: Story = {
-    args: { cols: 2 },
+    args: {cols: 2},
     render: (args) => (
         <div className="@container">
             <BentoBox {...args}>
                 <BentoBox.Element layoutId="a" colSpan={2}>
-                    <Tile label="Pleine largeur — 2×1" value="Bannière" />
+                    <Tile label="Pleine largeur — 2×1" value="Bannière"/>
                 </BentoBox.Element>
                 <BentoBox.Element layoutId="b" rowSpan={2}>
-                    <Tile label="1×2 — tall" value="↕" />
+                    <Tile label="1×2 — tall" value="↕"/>
                 </BentoBox.Element>
                 <BentoBox.Element layoutId="c">
-                    <Tile label="1×1" value="A" />
+                    <Tile label="1×1" value="A"/>
                 </BentoBox.Element>
                 <BentoBox.Element layoutId="d">
-                    <Tile label="1×1" value="B" />
+                    <Tile label="1×1" value="B"/>
                 </BentoBox.Element>
             </BentoBox>
         </div>
     ),
-    play: async ({ canvasElement }) => {
+    play: async ({canvasElement}) => {
         const grid = canvasElement.querySelector(".grid") as HTMLElement;
         expect(grid.classList).toContain("grid-cols-2");
     },
@@ -220,29 +232,29 @@ export const TwoColumns: Story = {
  * Grille **3 colonnes** — équilibre entre densité et lisibilité.
  */
 export const ThreeColumns: Story = {
-    args: { cols: 3 },
+    args: {cols: 3},
     render: (args) => (
         <div className="@container">
             <BentoBox {...args}>
                 <BentoBox.Element layoutId="a" colSpan={3}>
-                    <Tile label="Pleine largeur — 3×1" value="Header" />
+                    <Tile label="Pleine largeur — 3×1" value="Header"/>
                 </BentoBox.Element>
                 <BentoBox.Element layoutId="b" rowSpan={2}>
-                    <Tile label="1×2" value="Tall" />
+                    <Tile label="1×2" value="Tall"/>
                 </BentoBox.Element>
                 <BentoBox.Element layoutId="c">
-                    <Tile label="1×1" value="A" />
+                    <Tile label="1×1" value="A"/>
                 </BentoBox.Element>
                 <BentoBox.Element layoutId="d">
-                    <Tile label="1×1" value="B" />
+                    <Tile label="1×1" value="B"/>
                 </BentoBox.Element>
                 <BentoBox.Element layoutId="e" colSpan={2}>
-                    <Tile label="2×1" value="Large" />
+                    <Tile label="2×1" value="Large"/>
                 </BentoBox.Element>
             </BentoBox>
         </div>
     ),
-    play: async ({ canvasElement }) => {
+    play: async ({canvasElement}) => {
         const grid = canvasElement.querySelector(".grid") as HTMLElement;
         expect(grid.classList).toContain("grid-cols-3");
     },
@@ -261,10 +273,10 @@ export const ThreeColumns: Story = {
 export const ResponsiveCols: Story = {
     render: () => (
         <div className="@container">
-            <BentoBox cols={{ base: 1, sm: 2, lg: 4 }} dense>
-                {Array.from({ length: 6 }, (_, i) => (
+            <BentoBox cols={{base: 1, sm: 2, lg: 4}} dense>
+                {Array.from({length: 6}, (_, i) => (
                     <BentoBox.Element key={i} layoutId={`r${i}`}>
-                        <Tile label={`Cellule ${i + 1}`} value={`${i + 1}`} />
+                        <Tile label={`Cellule ${i + 1}`} value={`${i + 1}`}/>
                     </BentoBox.Element>
                 ))}
             </BentoBox>
@@ -273,11 +285,12 @@ export const ResponsiveCols: Story = {
     parameters: {
         docs: {
             description: {
-                story: "Redimensionne la fenêtre pour observer le changement de colonnes.",
+                story:
+                    "Redimensionne la fenêtre pour observer le changement de colonnes.",
             },
         },
     },
-    play: async ({ canvasElement }) => {
+    play: async ({canvasElement}) => {
         const grid = canvasElement.querySelector(".grid") as HTMLElement;
         // base: 1 col
         expect(grid.classList).toContain("grid-cols-1");
@@ -300,29 +313,29 @@ export const ResponsiveCols: Story = {
  * laissent un trou visible dans la grille.
  */
 export const WithoutDense: Story = {
-    args: { cols: 4, dense: false },
+    args: {cols: 4, dense: false},
     render: (args) => (
         <div className="@container">
             <BentoBox {...args}>
                 <BentoBox.Element layoutId="a" colSpan={2}>
-                    <Tile label="A — 2×1" />
+                    <Tile label="A — 2×1"/>
                 </BentoBox.Element>
                 <BentoBox.Element layoutId="b" rowSpan={2}>
-                    <Tile label="B — 1×2" />
+                    <Tile label="B — 1×2"/>
                 </BentoBox.Element>
                 <BentoBox.Element layoutId="c">
-                    <Tile label="C — 1×1" />
+                    <Tile label="C — 1×1"/>
                 </BentoBox.Element>
                 <BentoBox.Element layoutId="d" colSpan={2}>
-                    <Tile label="D — 2×1 → trou avant lui" />
+                    <Tile label="D — 2×1 → trou avant lui"/>
                 </BentoBox.Element>
                 <BentoBox.Element layoutId="e">
-                    <Tile label="E — 1×1" />
+                    <Tile label="E — 1×1"/>
                 </BentoBox.Element>
             </BentoBox>
         </div>
     ),
-    play: async ({ canvasElement }) => {
+    play: async ({canvasElement}) => {
         const grid = canvasElement.querySelector(".grid") as HTMLElement;
         expect(grid.className).not.toContain("grid-flow-dense");
     },
@@ -335,29 +348,29 @@ export const WithoutDense: Story = {
  * ⚠️ L'ordre visuel peut différer de l'ordre du DOM.
  */
 export const WithDense: Story = {
-    args: { cols: 4, dense: true },
+    args: {cols: 4, dense: true},
     render: (args) => (
         <div className="@container">
             <BentoBox {...args}>
                 <BentoBox.Element layoutId="a" colSpan={2}>
-                    <Tile label="A — 2×1" />
+                    <Tile label="A — 2×1"/>
                 </BentoBox.Element>
                 <BentoBox.Element layoutId="b" rowSpan={2}>
-                    <Tile label="B — 1×2" />
+                    <Tile label="B — 1×2"/>
                 </BentoBox.Element>
                 <BentoBox.Element layoutId="c">
-                    <Tile label="C — 1×1" />
+                    <Tile label="C — 1×1"/>
                 </BentoBox.Element>
                 <BentoBox.Element layoutId="d" colSpan={2}>
-                    <Tile label="D — 2×1" />
+                    <Tile label="D — 2×1"/>
                 </BentoBox.Element>
                 <BentoBox.Element layoutId="e">
-                    <Tile label="E — comblé ici" />
+                    <Tile label="E — comblé ici"/>
                 </BentoBox.Element>
             </BentoBox>
         </div>
     ),
-    play: async ({ canvasElement }) => {
+    play: async ({canvasElement}) => {
         const grid = canvasElement.querySelector(".grid") as HTMLElement;
         expect(grid.classList).toContain("grid-flow-dense");
     },
@@ -380,24 +393,24 @@ export const AspectLandscape: Story = {
         <div className="@container">
             <BentoBox cols={3} dense baseAspect={[4, 3]}>
                 <BentoBox.Element layoutId="a" colSpan={2}>
-                    <Tile label="2×1 → 8:3" />
+                    <Tile label="2×1 → 8:3"/>
                 </BentoBox.Element>
                 <BentoBox.Element layoutId="b" rowSpan={2}>
-                    <Tile label="1×2 → 4:6" />
+                    <Tile label="1×2 → 4:6"/>
                 </BentoBox.Element>
                 <BentoBox.Element layoutId="c">
-                    <Tile label="1×1 → 4:3" />
+                    <Tile label="1×1 → 4:3"/>
                 </BentoBox.Element>
                 <BentoBox.Element layoutId="d">
-                    <Tile label="1×1 → 4:3" />
+                    <Tile label="1×1 → 4:3"/>
                 </BentoBox.Element>
                 <BentoBox.Element layoutId="e" colSpan={2}>
-                    <Tile label="2×1 → 8:3" />
+                    <Tile label="2×1 → 8:3"/>
                 </BentoBox.Element>
             </BentoBox>
         </div>
     ),
-    play: async ({ canvasElement }) => {
+    play: async ({canvasElement}) => {
         const grid = canvasElement.querySelector(".grid") as HTMLElement;
         expect(grid.style.gridAutoRows).toContain("4");
         expect(grid.style.gridAutoRows).toContain("3");
@@ -412,22 +425,22 @@ export const AspectPortrait: Story = {
         <div className="@container">
             <BentoBox cols={4} dense baseAspect={[3, 4]}>
                 <BentoBox.Element layoutId="a" colSpan={2}>
-                    <Tile label="2×1 → 6:4" />
+                    <Tile label="2×1 → 6:4"/>
                 </BentoBox.Element>
                 <BentoBox.Element layoutId="b">
-                    <Tile label="1×1 → 3:4" />
+                    <Tile label="1×1 → 3:4"/>
                 </BentoBox.Element>
                 <BentoBox.Element layoutId="c">
-                    <Tile label="1×1 → 3:4" />
+                    <Tile label="1×1 → 3:4"/>
                 </BentoBox.Element>
                 <BentoBox.Element layoutId="d" colSpan={2} rowSpan={2}>
-                    <Tile label="2×2 → 6:8 = 3:4" />
+                    <Tile label="2×2 → 6:8 = 3:4"/>
                 </BentoBox.Element>
                 <BentoBox.Element layoutId="e">
-                    <Tile label="1×1 → 3:4" />
+                    <Tile label="1×1 → 3:4"/>
                 </BentoBox.Element>
                 <BentoBox.Element layoutId="f">
-                    <Tile label="1×1 → 3:4" />
+                    <Tile label="1×1 → 3:4"/>
                 </BentoBox.Element>
             </BentoBox>
         </div>
@@ -452,13 +465,13 @@ export const ColSpans: Story = {
             <BentoBox cols={4}>
                 {([1, 2, 3, 4] as const).map((span) => (
                     <BentoBox.Element key={span} layoutId={`cs${span}`} colSpan={span}>
-                        <Tile label={`colSpan=${span}`} />
+                        <Tile label={`colSpan=${span}`}/>
                     </BentoBox.Element>
                 ))}
             </BentoBox>
         </div>
     ),
-    play: async ({ canvasElement }) => {
+    play: async ({canvasElement}) => {
         const motionDivs = canvasElement.querySelectorAll(
             ".col-span-1, .col-span-2, .col-span-3, .col-span-4",
         );
@@ -478,25 +491,25 @@ export const RowSpans: Story = {
         <div className="@container">
             <BentoBox cols={4} dense>
                 <BentoBox.Element layoutId="r2" rowSpan={2}>
-                    <Tile label="rowSpan=2" value="↕" />
+                    <Tile label="rowSpan=2" value="↕"/>
                 </BentoBox.Element>
                 <BentoBox.Element layoutId="r3" rowSpan={3}>
-                    <Tile label="rowSpan=3" value="↕↕" />
+                    <Tile label="rowSpan=3" value="↕↕"/>
                 </BentoBox.Element>
-                {Array.from({ length: 6 }, (_, i) => (
+                {Array.from({length: 6}, (_, i) => (
                     <BentoBox.Element key={i} layoutId={`f${i}`}>
-                        <Tile label="1×1" />
+                        <Tile label="1×1"/>
                     </BentoBox.Element>
                 ))}
             </BentoBox>
         </div>
     ),
-    play: async ({ canvasElement }) => {
+    play: async ({canvasElement}) => {
         const row2 = canvasElement.querySelector(".row-span-2");
         const row3 = canvasElement.querySelector(".row-span-3");
-        expect(row2).toBeTruthy()
-        expect(document.contains(row2)).toBe(true)
-        expect(row3).toBeTruthy()
-        expect(document.contains(row3)).toBe(true)
+        expect(row2).toBeTruthy();
+        expect(document.contains(row2)).toBe(true);
+        expect(row3).toBeTruthy();
+        expect(document.contains(row3)).toBe(true);
     },
 };

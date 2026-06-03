@@ -1,2 +1,2 @@
-declare const styles: string
-export default styles
+declare const styles: string;
+export default styles;
