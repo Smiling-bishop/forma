@@ -57,7 +57,7 @@
 		"vitest": "^4.1.8"
 	},
 	"peerDependencies": {
-		"motion": "^11",
+		"motion": "^12",
 		"react": "^19",
 		"react-dom": "^19",
 		"tailwindcss": "^4"
