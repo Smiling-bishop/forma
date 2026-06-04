@@ -21,9 +21,7 @@ A private UI component library built with React, Tailwind CSS v4, and Motion. Di
 // your-app/package.json
 {
   "dependencies": {
-    "forma": "github:Smiling-bishop/forma",
-    "forma": "github:Smiling-bishop/forma#main",    // pin to branch
-    "forma": "github:Smiling-bishop/forma#abc1234"  // pin to commit
+    "forma": "github:Smiling-bishop/forma#main",
   }
 }
 ```
@@ -75,43 +73,6 @@ export default function Gallery() {
 
 ---
 
-### Option B — Git dependency (private repo)
-
-SSH — recommended if your machine has an SSH key configured on GitHub:
-
-```json
-{
-  "dependencies": {
-    "forma": "git+ssh://git@github.com:Smiling-bishop/forma.git",
-    "forma": "git+ssh://git@github.com:Smiling-bishop/forma.git#main"
-  }
-}
-```
-
-HTTPS with token — for CI or machines without SSH configured:
-
-```json
-{
-  "dependencies": {
-    "forma": "git+https://your-token@github.com/Smiling-bishop/forma.git"
-  }
-}
-```
-
-Generate a GitHub token with the `repo` scope. In CI, use an environment variable:
-
-```bash
-# GitHub Actions or any CI
-GITHUB_TOKEN=ghp_xxx pnpm install
-```
-
-```json
-"forma": "git+https://${GITHUB_TOKEN}@github.com/Smiling-bishop/forma.git"
-```
-
-Then follow steps 1–2 from Option A.
-
----
 
 ## Development
 
