@@ -5,17 +5,21 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versio
 
 ## [Unreleased]
 
+
+## [0.2.0] — 2026-06-04
+
 ### Added
 - Export `BentoResponsive` type for consumer use
+- `tsup` build pipeline — library now ships a compiled `dist/` instead of raw source
+- `prepare` script triggers build automatically on `pnpm install` from Git
+- `@types/node` added to devDependencies
 
 ### Changed
+- `package.json` exports now point to `dist/index.js` and `dist/index.d.ts`
+- `tsconfig.json` — removed deprecated `baseUrl` (TS 6 compatibility)
 - Extract all types to dedicated `types.ts` file
 - Rename internal `Size` to `BentoElementSize`
 - Remove `"use client"` directive — let consumer handle boundary
-
-### Removed
-
-### Deprecated
 
 ### Fixed
 - Strip trailing dash from `bento-cols-*` class prefix for responsive variants
